@@ -10,8 +10,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Placeholder() 도 Plceholder Widget이다.
-    // 간단한 위젯으로 개발 시 단순히 위젯 위치를 알기 위해 사용한다.
-    return const Placeholder();
+    return Container(
+      color: Colors.amber,
+      child: const Center(
+        child: Text(
+          'Hello World',
+          textDirection: TextDirection.ltr,
+        ),
+      ),
+    );
   }
 }

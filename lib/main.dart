@@ -11,11 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.amber,
-      child: const Center(
-        child: Text(
-          'Hello World',
-          textDirection: TextDirection.ltr,
+      margin: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        // Container의 color 선언과 decoration: BoxDecoration()을 둘다 적용하면, BoxDecoration() 안에서 color을 선안하라고 가이드한다.(에러 발생)
+        color: Colors.blue,
+        border: Border.all(
+          color: Colors.amber,
+          width: 5,
         ),
       ),
     );

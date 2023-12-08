@@ -12,12 +12,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         // Container의 color 선언과 decoration: BoxDecoration()을 둘다 적용하면, BoxDecoration() 안에서 color을 선안하라고 가이드한다.(에러 발생)
         color: Colors.blue,
-        border: Border.all(
-          color: Colors.amber,
-          width: 5,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(50),
+          topRight: Radius.circular(50),
+          bottomLeft: Radius.circular(50),
+          bottomRight: Radius.circular(50),
         ),
       ),
     );

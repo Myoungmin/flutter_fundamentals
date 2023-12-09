@@ -10,18 +10,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      decoration: const BoxDecoration(
-        // Container의 color 선언과 decoration: BoxDecoration()을 둘다 적용하면, BoxDecoration() 안에서 color을 선안하라고 가이드한다.(에러 발생)
-        color: Colors.blue,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(50),
-          topRight: Radius.circular(50),
-          bottomLeft: Radius.circular(50),
-          bottomRight: Radius.circular(50),
+    return Column(
+      children: [
+        Container(
+          color: Colors.red,
+          width: 50,
+          height: 50,
+          margin: const EdgeInsets.all(10),
         ),
-      ),
+        Container(
+          color: Colors.blue,
+          width: 50,
+          height: 50,
+          margin: const EdgeInsets.all(10),
+        )
+      ],
     );
   }
 }

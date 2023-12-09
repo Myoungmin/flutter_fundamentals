@@ -12,18 +12,132 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          color: Colors.red,
-          width: 50,
-          height: 50,
-          margin: const EdgeInsets.all(10),
+        Row(
+          textDirection: TextDirection.ltr,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              color: Colors.red,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.blue,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.yellow,
+              width: 50,
+              height: 50,
+            ),
+          ],
         ),
-        Container(
-          color: Colors.blue,
-          width: 50,
-          height: 50,
-          margin: const EdgeInsets.all(10),
-        )
+        Row(
+          textDirection: TextDirection.ltr,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              color: Colors.red,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.blue,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.yellow,
+              width: 50,
+              height: 50,
+            ),
+          ],
+        ),
+        Row(
+          textDirection: TextDirection.ltr,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              color: Colors.red,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.blue,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.yellow,
+              width: 50,
+              height: 50,
+            ),
+          ],
+        ),
+        Row(
+          textDirection: TextDirection.ltr,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              color: Colors.red,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.blue,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.yellow,
+              width: 50,
+              height: 50,
+            ),
+          ],
+        ),
+        Row(
+          textDirection: TextDirection.ltr,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              color: Colors.red,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.blue,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.yellow,
+              width: 50,
+              height: 50,
+            ),
+          ],
+        ),
+        Row(
+          textDirection: TextDirection.ltr,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              color: Colors.red,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.blue,
+              width: 50,
+              height: 50,
+            ),
+            Container(
+              color: Colors.yellow,
+              width: 50,
+              height: 50,
+            ),
+          ],
+        ),
       ],
     );
   }

@@ -10,10 +10,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      textDirection: TextDirection.ltr,
       children: [
-        Row(
-          textDirection: TextDirection.ltr,
+        Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
@@ -33,8 +33,7 @@ class MyApp extends StatelessWidget {
             ),
           ],
         ),
-        Row(
-          textDirection: TextDirection.ltr,
+        Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
@@ -54,8 +53,7 @@ class MyApp extends StatelessWidget {
             ),
           ],
         ),
-        Row(
-          textDirection: TextDirection.ltr,
+        Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
@@ -75,8 +73,7 @@ class MyApp extends StatelessWidget {
             ),
           ],
         ),
-        Row(
-          textDirection: TextDirection.ltr,
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
@@ -96,8 +93,7 @@ class MyApp extends StatelessWidget {
             ),
           ],
         ),
-        Row(
-          textDirection: TextDirection.ltr,
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
@@ -117,8 +113,7 @@ class MyApp extends StatelessWidget {
             ),
           ],
         ),
-        Row(
-          textDirection: TextDirection.ltr,
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(

@@ -10,61 +10,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.red),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: const Text('Myounngmin')),
-        body: const Center(
-          child: TextField(
-            decoration: InputDecoration(labelText: '입력해보세요'),
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          // The size of the shadow (default: 6)
+        appBar: AppBar(
+          title: const Text("Myoungmin"),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.comment),
+              tooltip: 'Common Icon',
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(Icons.settings),
+              tooltip: 'Setting Icon',
+              onPressed: () {},
+            ),
+          ],
+          backgroundColor: Colors.amber,
           elevation: 10.0,
-          child: const Icon(Icons.add),
-          onPressed: () {},
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        drawer: Drawer(
-          child: ListView(
-            children: const <Widget>[
-              ListTile(
-                title: Text('Item 1'),
-              ),
-              ListTile(
-                title: Text('Item 2'),
-              ),
-            ],
+          leading: IconButton(
+            icon: const Icon(Icons.menu),
+            tooltip: 'Menu Icon',
+            onPressed: () {},
           ),
+          centerTitle: true,
         ),
-        persistentFooterButtons: const [
-          Icon(Icons.settings),
-          SizedBox(width: 5),
-          Icon(Icons.exit_to_app),
-          SizedBox(
-            width: 10,
-          ),
-        ],
-        bottomNavigationBar: BottomNavigationBar(
-            currentIndex: 0,
-            fixedColor: Colors.green,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                label: 'Home',
-                icon: Icon(Icons.home),
-              ),
-              BottomNavigationBarItem(
-                label: 'Search',
-                icon: Icon(Icons.search),
-              ),
-              BottomNavigationBarItem(
-                label: 'Profile',
-                icon: Icon(Icons.account_circle),
-              ),
-            ],
-            onTap: (int indexOfItem) {}),
-        backgroundColor: Colors.amberAccent,
-        resizeToAvoidBottomInset: false,
       ),
     );
   }

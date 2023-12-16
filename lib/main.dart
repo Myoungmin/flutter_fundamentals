@@ -5,7 +5,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // 참고: Key는 보통 위젯을 식별하기 위해 사용되며, 다음과 같이 키를 넣어줄 수 있다.
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -13,25 +12,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Align Widget Example'),
+        ),
         body: Center(
-          child: Stack(
-            children: [
-              Container(
-                width: 400,
-                height: 400,
-                color: Colors.yellow,
-              ),
-              Container(
-                width: 300,
-                height: 300,
-                color: Colors.blue,
-              ),
-              Container(
-                width: 100,
-                height: 100,
-                color: Colors.green,
-              ),
-            ],
+          child: Container(
+            color: Colors.blue,
+            height: 200,
+            width: 200,
+            child: const Align(
+              alignment: Alignment.bottomRight,
+              child: Text('Myoungmin'),
+            ),
           ),
         ),
       ),

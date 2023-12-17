@@ -13,18 +13,30 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Align Widget Example'),
+          title: const Text('Expanded Widget Example'),
+          backgroundColor: Colors.green,
         ),
-        body: Center(
-          child: Container(
-            color: Colors.blue,
-            height: 200,
-            width: 200,
-            child: const Align(
-              alignment: Alignment.bottomRight,
-              child: Text('Myoungmin'),
+        body: Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: Colors.red,
+                child: const Center(
+                  child: Text('First item'),
+                ),
+              ),
             ),
-          ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                color: Colors.blue,
+                child: const Center(
+                  child: Text('Second item'),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

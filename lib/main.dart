@@ -13,30 +13,28 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Expanded Widget Example'),
-          backgroundColor: Colors.green,
+          title: const Text('SingleChildScrollView Widget Example'),
+          backgroundColor: Colors.blue,
         ),
-        body: Column(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Container(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
                 color: Colors.red,
+                height: 1000,
                 child: const Center(
-                  child: Text('First item'),
+                  child: Text('Header'),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                color: Colors.blue,
+              Container(
+                color: Colors.green,
+                height: 1000,
                 child: const Center(
-                  child: Text('Second item'),
+                  child: Text('Footer'),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

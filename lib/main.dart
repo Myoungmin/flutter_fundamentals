@@ -13,28 +13,29 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('SingleChildScrollView Widget Example'),
+          title: const Text('TextStyle Property'),
           backgroundColor: Colors.blue,
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                color: Colors.red,
-                height: 1000,
-                child: const Center(
-                  child: Text('Header'),
-                ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const <Widget>[
+            Text(
+              'Ko Myoungmin',
+              textDirection: TextDirection.ltr,
+              style: TextStyle(
+                color: Colors.amber,
+                fontSize: 30,
+                fontStyle: FontStyle.italic,
+                backgroundColor: Colors.blue,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 5,
+                wordSpacing: 20,
+                decoration: TextDecoration.underline,
+                decorationStyle: TextDecorationStyle.wavy,
+                decorationColor: Colors.red,
               ),
-              Container(
-                color: Colors.green,
-                height: 1000,
-                child: const Center(
-                  child: Text('Footer'),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

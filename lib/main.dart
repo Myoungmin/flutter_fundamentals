@@ -9,62 +9,110 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Text Property'),
-          backgroundColor: Colors.blue,
-        ),
-        body: Column(
+    return Column(
+      children: [
+        Row(
+          textDirection: TextDirection.ltr,
           children: [
             Container(
-              width: 400,
-              color: Colors.amber,
-              child: const Text(
-                'Welcome to Flutter My name is Ko Myoungmin',
-                textDirection: TextDirection.ltr,
-                style: TextStyle(fontSize: 24),
-                softWrap: false,
-                overflow: TextOverflow.fade,
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                border: Border.all(
+                  color: Colors.red,
+                  width: 2,
+                ),
+              ),
+              child: Image.network(
+                'https://avatars.githubusercontent.com/u/59222053?v=4',
+                width: 200,
+                height: 300,
+                fit: BoxFit.contain,
               ),
             ),
             Container(
-              width: 400,
-              color: Colors.red,
-              child: const Text(
-                'Welcome to Flutter My name is Ko Myoungmin',
-                textDirection: TextDirection.ltr,
-                style: TextStyle(fontSize: 24),
-                softWrap: false,
-                overflow: TextOverflow.clip,
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                border: Border.all(
+                  color: Colors.red,
+                  width: 2,
+                ),
+              ),
+              child: Image.network(
+                'https://avatars.githubusercontent.com/u/59222053?v=4',
+                width: 200,
+                height: 300,
+                fit: BoxFit.fill,
               ),
             ),
             Container(
-              width: 400,
-              color: Colors.green,
-              child: const Text(
-                'Welcome to Flutter My name is Ko Myoungmin',
-                textDirection: TextDirection.ltr,
-                style: TextStyle(fontSize: 24),
-                softWrap: false,
-                overflow: TextOverflow.visible,
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                border: Border.all(
+                  color: Colors.red,
+                  width: 2,
+                ),
+              ),
+              child: Image.network(
+                'https://avatars.githubusercontent.com/u/59222053?v=4',
+                width: 200,
+                height: 300,
+                fit: BoxFit.fitWidth,
               ),
             ),
             Container(
-              width: 400,
-              color: Colors.brown,
-              child: const Text(
-                'Welcome to Flutter My name is Ko Myoungmin',
-                textDirection: TextDirection.ltr,
-                textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 24),
-                overflow: TextOverflow.visible,
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                border: Border.all(
+                  color: Colors.red,
+                  width: 2,
+                ),
+              ),
+              child: Image.network(
+                'https://avatars.githubusercontent.com/u/59222053?v=4',
+                width: 200,
+                height: 300,
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                border: Border.all(
+                  color: Colors.red,
+                  width: 2,
+                ),
+              ),
+              child: Image.network(
+                'https://avatars.githubusercontent.com/u/59222053?v=4',
+                width: 200,
+                height: 300,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                border: Border.all(
+                  color: Colors.red,
+                  width: 2,
+                ),
+              ),
+              child: Image.network(
+                'https://avatars.githubusercontent.com/u/59222053?v=4',
+                width: 200,
+                height: 300,
+                fit: BoxFit.none,
               ),
             ),
           ],
-        ),
-      ),
+        )
+      ],
     );
   }
 }

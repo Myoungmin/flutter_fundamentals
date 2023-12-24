@@ -1,37 +1,68 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MaterialApp(
+      title: 'Myoungmin App',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+      ),
+      home: const MyHomePage(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Ko Myoungmin'),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.comment),
-              tooltip: 'Comment Icon',
-              splashColor: Colors.red,
-              alignment: Alignment.topLeft,
-              highlightColor: Colors.brown,
-              hoverColor: Colors.amber,
-            ),
-            const IconButton(
-              // onPressed에 null을 할당하면 해당 위젯은 사용자의 입력을 받지 않으며, 일반적으로 시각적으로도 비활성화된 상태로 표시
-              onPressed: null,
-              icon: Icon(Icons.place),
-              tooltip: 'Comment Icon',
-              disabledColor: Colors.grey,
-            ),
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'My App',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              Container(
+                color: Theme.of(context).colorScheme.primary,
+                width: 50,
+                height: 50,
+              ),
+              Container(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                width: 50,
+                height: 50,
+              ),
+              Container(
+                color: Theme.of(context).colorScheme.secondary,
+                width: 50,
+                height: 50,
+              ),
+              Container(
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                width: 50,
+                height: 50,
+              ),
+              Container(
+                color: Theme.of(context).colorScheme.tertiary,
+                width: 50,
+                height: 50,
+              ),
+              Container(
+                color: Theme.of(context).colorScheme.tertiaryContainer,
+                width: 50,
+                height: 50,
+              ),
+            ],
+          ),
         ),
       ),
     );

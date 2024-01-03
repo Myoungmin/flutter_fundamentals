@@ -9,29 +9,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Simple App'),
-      ),
-      body: ListView.builder(
-        itemCount: 6,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text('Item $index'),
-          );
-        },
+      home: Scaffold(
+        body: ListView.builder(
+          physics: const BouncingScrollPhysics(), // iOS 스타일 스크롤
+          //physics: const ClampingScrollPhysics(), // Android 스타일 스크롤
+          itemCount: 20,
+          itemBuilder: (context, position) {
+            return ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.amber,
+                child: Text(position.toString()),
+              ),
+              title: Text('Item $position'),
+              subtitle: Text('Item$position description'),
+            );
+          },
+        ),
       ),
     );
   }

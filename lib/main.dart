@@ -12,18 +12,28 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: ListView.builder(
-          physics: const BouncingScrollPhysics(), // iOS 스타일 스크롤
-          //physics: const ClampingScrollPhysics(), // Android 스타일 스크롤
+        body: ListView.separated(
           itemCount: 20,
-          itemBuilder: (context, position) {
+          itemBuilder: (context, index) {
             return ListTile(
               leading: CircleAvatar(
                 backgroundColor: Colors.amber,
-                child: Text(position.toString()),
+                child: Text(index.toString()),
               ),
-              title: Text('Item $position'),
-              subtitle: Text('Item$position description'),
+              title: Text('Item $index'),
+              subtitle: Text('Item$index description'),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return Card(
+              color: Colors.grey,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Separator $index',
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
             );
           },
         ),

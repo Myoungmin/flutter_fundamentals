@@ -1,37 +1,38 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final List<String> items = List.generate(100, (index) => 'Item $index');
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: ListView.separated(
-          itemCount: 20,
+        appBar: AppBar(
+          title: const Text('GridView Example'),
+        ),
+        body: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 8.0,
+            mainAxisSpacing: 8.0,
+          ),
+          itemCount: items.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.amber,
-                child: Text(index.toString()),
-              ),
-              title: Text('Item $index'),
-              subtitle: Text('Item$index description'),
-            );
-          },
-          separatorBuilder: (context, index) {
-            return Card(
-              color: Colors.grey,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+            return Container(
+              color: Colors.blueGrey[100],
+              child: Center(
                 child: Text(
-                  'Separator $index',
-                  style: const TextStyle(color: Colors.white),
+                  items[index],
+                  style: const TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             );

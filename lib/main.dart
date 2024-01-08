@@ -1,64 +1,31 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  int itemCount = 0;
-  List<String> items = [];
+  final PageController _controller = PageController(
+    initialPage: 1,
+    viewportFraction: 0.7,
+  );
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('GridView'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: () {
-                setState(() {
-                  itemCount++;
-                  items.add('Item $itemCount');
-                });
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.remove),
-              onPressed: () {
-                setState(() {
-                  items.removeLast();
-                  itemCount--;
-                });
-              },
-            )
-          ],
+          title: const Text('PageView Example'),
         ),
-        body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, crossAxisSpacing: 8.0, mainAxisSpacing: 8.0),
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return Container(
-              color: Colors.amber,
-              child: Center(
-                child: Text(
-                  items[index],
-                  style: const TextStyle(
-                      fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
-            );
-          },
+        body: PageView(
+          controller: _controller,
+          children: [
+            Container(margin: const EdgeInsets.all(10), color: Colors.red),
+            Container(margin: const EdgeInsets.all(10), color: Colors.blue),
+            Container(margin: const EdgeInsets.all(10), color: Colors.green),
+          ],
         ),
       ),
     );

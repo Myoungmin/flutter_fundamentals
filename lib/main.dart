@@ -1,33 +1,46 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final PageController _controller = PageController(
-    initialPage: 1,
-    viewportFraction: 0.7,
-  );
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('PageView Example'),
+        appBar: AppBar(title: const Text('AlertDialog Sample')),
+        body: const Center(
+          child: DialogExample(),
         ),
-        body: PageView(
-          controller: _controller,
-          children: [
-            Container(margin: const EdgeInsets.all(10), color: Colors.red),
-            Container(margin: const EdgeInsets.all(10), color: Colors.blue),
-            Container(margin: const EdgeInsets.all(10), color: Colors.green),
+      ),
+    );
+  }
+}
+
+class DialogExample extends StatelessWidget {
+  const DialogExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () => showDialog<String>(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext constext) => AlertDialog(
+          title: const Text('AlertDialog Title'),
+          content: const Text('AlertDialog description'),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('OK')),
+            TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('Cancel')),
           ],
         ),
       ),
+      child: const Text('Show Dialog'),
     );
   }
 }

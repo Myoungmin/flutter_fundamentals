@@ -30,6 +30,18 @@ class DialogExample extends StatelessWidget {
         builder: (BuildContext constext) => AlertDialog(
           title: const Text('AlertDialog Title'),
           content: const Text('AlertDialog description'),
+
+          // AlertDialog의 다양한 속성 추가
+          backgroundColor: Colors.grey[100],
+          elevation: 8.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          contentPadding: const EdgeInsets.all(12),
+          actionsPadding: const EdgeInsets.all(12),
+          titlePadding: const EdgeInsets.all(12),
+          buttonPadding: const EdgeInsets.all(12),
+
           actions: <Widget>[
             TextButton(
                 onPressed: () => Navigator.of(context).pop(),

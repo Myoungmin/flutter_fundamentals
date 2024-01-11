@@ -1,58 +1,57 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const BottomSheetApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class BottomSheetApp extends StatelessWidget {
+  const BottomSheetApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('AlertDialog Sample')),
-        body: const Center(
-          child: DialogExample(),
-        ),
-      ),
-    );
+        home: Scaffold(
+      appBar: AppBar(title: const Text('Bottom Sheet Sample')),
+      body: const BottomSheetExample(),
+    ));
   }
 }
 
-class DialogExample extends StatelessWidget {
-  const DialogExample({super.key});
+class BottomSheetExample extends StatelessWidget {
+  const BottomSheetExample({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => showDialog<String>(
-        context: context,
-        barrierDismissible: true,
-        builder: (BuildContext constext) => AlertDialog(
-          title: const Text('AlertDialog Title'),
-          content: const Text('AlertDialog description'),
-
-          // AlertDialog의 다양한 속성 추가
-          backgroundColor: Colors.grey[100],
-          elevation: 8.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          contentPadding: const EdgeInsets.all(12),
-          actionsPadding: const EdgeInsets.all(12),
-          titlePadding: const EdgeInsets.all(12),
-          buttonPadding: const EdgeInsets.all(12),
-
-          actions: <Widget>[
-            TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('OK')),
-            TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Cancel')),
-          ],
-        ),
+    return Center(
+      child: ElevatedButton(
+        child: const Text('ShowModalBottomSheet'),
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) {
+                return Container(
+                  color: Colors.amber,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ListTile(
+                        leading: const Icon(Icons.add),
+                        title: const Text('추가'),
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.remove),
+                        title: const Text('삭제'),
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    ],
+                  ),
+                );
+              });
+        },
       ),
-      child: const Text('Show Dialog'),
     );
   }
 }

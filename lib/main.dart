@@ -1,56 +1,53 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const BottomSheetApp());
+void main() => runApp(const MyApp());
 
-class BottomSheetApp extends StatelessWidget {
-  const BottomSheetApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(title: const Text('Bottom Sheet Sample')),
-      body: const BottomSheetExample(),
-    ));
-  }
-}
-
-class BottomSheetExample extends StatelessWidget {
-  const BottomSheetExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-        child: const Text('ShowModalBottomSheet'),
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              builder: (BuildContext context) {
-                return Container(
-                  color: Colors.amber,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ListTile(
-                        leading: const Icon(Icons.add),
-                        title: const Text('추가'),
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      ListTile(
-                        leading: const Icon(Icons.remove),
-                        title: const Text('삭제'),
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                      )
-                    ],
-                  ),
-                );
-              });
-        },
+      title: 'TabBar Example',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('TabBar Example'),
+          bottom: TabBar(
+            controller: _tabController,
+            tabs: const <Widget>[
+              Tab(icon: Icon(Icons.home), text: 'Home'),
+              Tab(icon: Icon(Icons.star), text: 'Favorites'),
+              Tab(icon: Icon(Icons.settings), text: 'Settings'),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          controller: _tabController,
+          children: const <Widget>[
+            Center(child: Text('Home')),
+            Center(child: Text('Favorites')),
+            Center(child: Text('Settings')),
+          ],
+        ),
       ),
     );
   }

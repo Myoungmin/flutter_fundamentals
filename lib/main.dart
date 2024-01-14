@@ -11,12 +11,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-          child: SizedBox(
-            width: 200.0,
-            height: 100.0,
+          child: SizedBox.expand(
             child: Card(
               color: Colors.amber,
-              child: Text('Myoungmin'),
+              child: Text(
+                'Myoungmin',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                ),
+              ),
             ),
           ),
         ),

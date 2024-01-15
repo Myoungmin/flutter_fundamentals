@@ -11,14 +11,29 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-          child: SizedBox.expand(
+          child: SizedBox(
+            width: 400,
+            height: 400,
             child: Card(
+              elevation: 50,
+              margin: EdgeInsets.all(5),
+              shadowColor: Colors.blue,
               color: Colors.amber,
-              child: Text(
-                'Myoungmin',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: Colors.deepPurpleAccent,
+                ),
+              ),
+              child: Center(
+                child: CircleAvatar(
+                  backgroundColor: Colors.brown,
+                  radius: 50,
+                  child: Center(
+                    child: Text(
+                      '1',
+                      style: TextStyle(fontSize: 80),
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -2,53 +2,40 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Gesture Demo',
+      home: MyHomePage(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  int _currentIndex = 0;
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              activeIcon: Icon(
-                Icons.alarm,
-                color: Colors.red,
-              ),
-              label: '홈',
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Gesture Demo"),
+      ),
+      body: GestureDetector(
+        onTap: () {
+          print('Screen tapped');
+        },
+        child: Container(
+          color: Colors.white,
+          child: const Center(
+            child: Text(
+              'Tap anywhere on the screen',
+              style: TextStyle(fontSize: 60),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: '즐겨찾기',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: '설정',
-            ),
-          ],
-          onTap: (value) {
-            setState(() {
-              _currentIndex = value;
-            });
-          },
-          currentIndex: _currentIndex,
-          backgroundColor: Colors.amber,
-          selectedItemColor: Colors.brown,
-          unselectedItemColor: Colors.blue,
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels: true,
-          showUnselectedLabels: false,
+          ),
         ),
-        backgroundColor: Colors.grey,
       ),
     );
   }

@@ -14,26 +14,46 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  double _top = 0;
+  String _dragStatus = 'Darg the text verticall';
+
+  void _onVerticalDragStart(DragStartDetails details) {
+    setState(() {
+      _dragStatus = 'Vertical drag started';
+      _top = details.globalPosition.dy;
+    });
+  }
+
+  //details.delta.dy를 사용하여 드래그의 수직 이동 거리를 얻고, 이를 이용하여 위젯의 수직 위치(_top)를 업데이트
+  void _onVerticalDragUpdate(DragUpdateDetails details) {
+    setState(() {
+      _top += details.delta.dy;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Gesture Demo"),
-      ),
       body: GestureDetector(
-        onTap: () {
-          print('Screen tapped');
-        },
+        onVerticalDragStart: _onVerticalDragStart,
+        onVerticalDragUpdate: _onVerticalDragUpdate,
         child: Container(
-          color: Colors.white,
-          child: const Center(
-            child: Text(
-              'Tap anywhere on the screen',
-              style: TextStyle(fontSize: 60),
-            ),
+          color: Colors.amber,
+          child: Stack(
+            children: [
+              Positioned(
+                top: _top,
+                child: Text(_dragStatus),
+              )
+            ],
           ),
         ),
       ),

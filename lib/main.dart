@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,37 +9,44 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Button Example',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Button Example'),
+    return const CupertinoApp(
+      title: 'My App',
+      theme: CupertinoThemeData(
+        brightness: Brightness.dark,
+        primaryColor: CupertinoColors.systemPurple,
+        primaryContrastingColor: CupertinoColors.systemOrange,
+        barBackgroundColor: CupertinoColors.systemGrey,
+        scaffoldBackgroundColor: CupertinoColors.systemBackground,
+        textTheme: CupertinoTextThemeData(
+          primaryColor: CupertinoColors.white,
+          actionTextStyle: TextStyle(color: CupertinoColors.activeBlue),
+          textStyle: TextStyle(fontSize: 20),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.favorite),
-                onPressed: () {
-                  print('IconButton');
-                },
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  print('ElevatedButton');
-                },
-                child: const Text('Click me!'),
-              ),
-            ],
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: const CupertinoNavigationBar(
+        middle: Text('My Home Page'),
+      ),
+      child: ListView(
+        children: [
+          CupertinoButton(
+            onPressed: () {},
+            child: const Text('Click'),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            print('FloatingActionButton');
-          },
-          child: const Icon(Icons.add),
-        ),
+          const Center(
+              child: Text('Cupertino',
+                  style: TextStyle(color: CupertinoColors.white))),
+        ],
       ),
     );
   }

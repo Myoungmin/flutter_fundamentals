@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,22 +11,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
-      title: 'My App',
-      theme: CupertinoThemeData(
-        brightness: Brightness.dark,
-        primaryColor: CupertinoColors.systemPurple,
-        primaryContrastingColor: CupertinoColors.systemOrange,
-        barBackgroundColor: CupertinoColors.systemGrey,
-        scaffoldBackgroundColor: CupertinoColors.systemBackground,
-        textTheme: CupertinoTextThemeData(
-          primaryColor: CupertinoColors.white,
-          actionTextStyle: TextStyle(color: CupertinoColors.activeBlue),
-          textStyle: TextStyle(fontSize: 20),
-        ),
-      ),
-      home: MyHomePage(),
-    );
+    try {
+      if (Platform.isIOS || Platform.isMacOS) {
+        return const CupertinoApp(
+          title: 'My App',
+          home: MyHomePage(),
+        );
+      } else {
+        return const MaterialApp(
+          title: 'My App',
+          home: MyHomePage(),
+        );
+      }
+    } catch (e) {
+      return const MaterialApp(
+        title: 'My App',
+        home: MyHomePage(),
+      );
+    }
   }
 }
 
@@ -33,21 +37,35 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('My Home Page'),
-      ),
-      child: ListView(
-        children: [
-          CupertinoButton(
-            onPressed: () {},
-            child: const Text('Click'),
+    try {
+      if (Platform.isIOS || Platform.isMacOS) {
+        return const CupertinoPageScaffold(
+          navigationBar: CupertinoNavigationBar(
+            middle: Text('My Home Page'),
           ),
-          const Center(
-              child: Text('Cupertino',
-                  style: TextStyle(color: CupertinoColors.white))),
-        ],
-      ),
-    );
+          child: Center(
+            child: Text('Welcome to my app!'),
+          ),
+        );
+      } else {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('My Home Page'),
+          ),
+          body: const Center(
+            child: Text('Welcome to my app!'),
+          ),
+        );
+      }
+    } catch (e) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('My Home Page'),
+        ),
+        body: const Center(
+          child: Text('Welcome to my app!'),
+        ),
+      );
+    }
   }
 }

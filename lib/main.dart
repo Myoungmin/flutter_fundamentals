@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,61 +9,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    try {
-      if (Platform.isIOS || Platform.isMacOS) {
-        return const CupertinoApp(
-          title: 'My App',
-          home: MyHomePage(),
-        );
-      } else {
-        return const MaterialApp(
-          title: 'My App',
-          home: MyHomePage(),
-        );
-      }
-    } catch (e) {
-      return const MaterialApp(
-        title: 'My App',
-        home: MyHomePage(),
-      );
-    }
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    try {
-      if (Platform.isIOS || Platform.isMacOS) {
-        return const CupertinoPageScaffold(
-          navigationBar: CupertinoNavigationBar(
-            middle: Text('My Home Page'),
-          ),
-          child: Center(
-            child: Text('Welcome to my app!'),
-          ),
-        );
-      } else {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('My Home Page'),
-          ),
-          body: const Center(
-            child: Text('Welcome to my app!'),
-          ),
-        );
-      }
-    } catch (e) {
-      return Scaffold(
+    return MaterialApp(
+      title: 'My App',
+      home: Scaffold(
         appBar: AppBar(
           title: const Text('My Home Page'),
         ),
-        body: const Center(
-          child: Text('Welcome to my app!'),
+        body: SafeArea(
+          child: ListView.builder(
+            itemCount: 50,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: const Icon(Icons.account_circle),
+                title: Text('$index'),
+                trailing: const Icon(Icons.arrow_forward),
+                onTap: () {},
+              );
+            },
+          ),
         ),
-      );
-    }
+      ),
+    );
   }
 }

@@ -1,31 +1,47 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyWidget());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyWidget extends StatefulWidget {
+  const MyWidget({super.key});
+
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  int _counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    print('initState called');
+  }
 
   @override
   Widget build(BuildContext context) {
+    print('build called');
     return MaterialApp(
-      title: 'My App',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('My Home Page'),
+          title: const Text('My Widget'),
         ),
-        body: SafeArea(
-          child: ListView.builder(
-            itemCount: 50,
-            itemBuilder: (context, index) {
-              return ListTile(
-                leading: const Icon(Icons.account_circle),
-                title: Text('$index'),
-                trailing: const Icon(Icons.arrow_forward),
-                onTap: () {},
-              );
-            },
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Button tapped $_counter time${_counter == 1 ? '' : 's'}.'),
+              ElevatedButton(
+                child: const Text('Tap me'),
+                onPressed: () {
+                  setState(() {
+                    _counter++;
+                  });
+                },
+              )
+            ],
           ),
         ),
       ),

@@ -1,50 +1,75 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyWidget());
+  runApp(const MyApp());
 }
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
-  int _counter = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    print('initState called');
-  }
+class _MyAppState extends State<MyApp> {
+  List<Widget> tileList = [
+    // 색상이 바뀌지 않음
+    MyStatefulWidget(Colors.brown),
+    MyStatefulWidget(Colors.green),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    print('build called');
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('My Widget'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('Button tapped $_counter time${_counter == 1 ? '' : 's'}.'),
-              ElevatedButton(
-                child: const Text('Tap me'),
-                onPressed: () {
-                  setState(() {
-                    _counter++;
-                  });
-                },
-              )
-            ],
-          ),
+        body: Column(
+          children: [
+            Row(
+              children: tileList,
+            ),
+            const SizedBox(
+              height: 50.0,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  tileList.insert(1, tileList.removeAt(0));
+                });
+              },
+              style:
+                  ElevatedButton.styleFrom(padding: const EdgeInsets.all(20)),
+              child: const Text(
+                "Click",
+                style: TextStyle(fontSize: 24),
+              ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  Color color;
+
+  MyStatefulWidget(this.color, {super.key});
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState(color);
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  Color color;
+
+  _MyStatefulWidgetState(this.color);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200,
+      height: 200,
+      color: color,
     );
   }
 }

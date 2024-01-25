@@ -14,8 +14,16 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   List<Widget> tileList = [
     // 색상이 바뀌지 않음
-    MyStatefulWidget(Colors.brown),
-    MyStatefulWidget(Colors.green),
+    //MyStatefulWidget(Colors.brown),
+    //MyStatefulWidget(Colors.green),
+
+    // ValueKey로 설정
+    //MyStatefulWidget(Colors.brown, key: const ValueKey('brownTile')),
+    //MyStatefulWidget(Colors.green, key: const ValueKey('greenTile')),
+
+    // UniqueKey() 활용
+    MyStatefulWidget(Colors.brown, key: UniqueKey()),
+    MyStatefulWidget(Colors.green, key: UniqueKey()),
   ];
 
   @override

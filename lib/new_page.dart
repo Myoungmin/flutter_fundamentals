@@ -9,8 +9,13 @@ class NewPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('New Page'),
       ),
-      body: const Center(
-        child: Text('This is a new page!'),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Go to Home'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
     );
   }

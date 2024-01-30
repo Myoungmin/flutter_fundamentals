@@ -5,17 +5,13 @@ class NewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final message = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
         title: const Text('New Page'),
       ),
       body: Center(
-        child: ElevatedButton(
-          child: const Text('Go to Home'),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        child: Text(message),
       ),
     );
   }

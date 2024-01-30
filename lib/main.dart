@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fundamentals/routes.dart';
+import 'new_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +15,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/home',
-      routes: routes,
+      home: const MyHomePage(),
+      routes: {
+        '/newPage': (context) => const NewPage(),
+      },
     );
   }
 }
@@ -28,13 +30,14 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home"),
+        title: const Text('Home Page'),
       ),
       body: Center(
         child: ElevatedButton(
-          child: const Text('New Page'),
+          child: const Text('Go to new Page'),
           onPressed: () {
-            Navigator.pushNamed(context, '/newPage');
+            Navigator.pushNamed(context, '/newPage',
+                arguments: 'Hello from the hom page!');
           },
         ),
       ),

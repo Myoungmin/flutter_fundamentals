@@ -16,9 +16,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
-      routes: {
-        '/newPage': (context) => const NewPage(),
-      },
     );
   }
 }
@@ -36,8 +33,13 @@ class MyHomePage extends StatelessWidget {
         child: ElevatedButton(
           child: const Text('Go to new Page'),
           onPressed: () {
-            Navigator.pushNamed(context, '/newPage',
-                arguments: 'Hello from the hom page!');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    const NewPage(message: 'Hello from the home page!'),
+              ),
+            );
           },
         ),
       ),

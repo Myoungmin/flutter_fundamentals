@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+@immutable
 class NewPage extends StatelessWidget {
-  const NewPage({super.key});
+  final String message;
+  const NewPage({required this.message, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final message = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
         title: const Text('New Page'),

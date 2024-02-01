@@ -12,7 +12,12 @@ class NewPage extends StatelessWidget {
         title: const Text('New Page'),
       ),
       body: Center(
-        child: Text(message),
+        child: ElevatedButton(
+          child: Text(message),
+          onPressed: () {
+            Navigator.pop(context, 'From NewPage');
+          },
+        ),
       ),
     );
   }

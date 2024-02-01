@@ -32,14 +32,15 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           child: const Text('Go to new Page'),
-          onPressed: () {
-            Navigator.push(
+          onPressed: () async {
+            final result = await Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) =>
                     const NewPage(message: 'Hello from the home page!'),
               ),
             );
+            print('$result');
           },
         ),
       ),

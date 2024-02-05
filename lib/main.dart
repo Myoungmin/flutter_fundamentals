@@ -1,80 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  List<DynamicWidget> listDynamic = [];
-
-  addDynamic() {
-    if (listDynamic.length >= 5) return;
-    listDynamic.add(DynamicWidget());
-    setState(() {});
-  }
-
-  submitData() {
-    for (var element in listDynamic) {
-      print(element.controller.text);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Dynamic App'),
+          title: const Text('Provider Test'),
         ),
-        body: Container(
-          child: Column(
-            children: [
-              Flexible(
-                child: ListView.builder(
-                  itemCount: listDynamic.length,
-                  itemBuilder: (context, index) => listDynamic[index],
-                ),
-              ),
-              Container(
-                child: ElevatedButton(
-                  onPressed: submitData,
-                  child: const Text('Submit Data'),
-                ),
-              )
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: addDynamic,
-          child: const Icon(
-            Icons.add,
-          ),
+        body: Column(
+          children: [
+            const SizedBox(height: 10),
+            Provider<int>.value(
+              value: 5,
+              // child 속성에 쓰인 위젯(MyWidget1)에서 Porvider 사용 가능
+              child: const MyWidget1(),
+            ),
+            const SizedBox(height: 10),
+            const MyWidget2(),
+          ],
         ),
       ),
     );
   }
 }
 
-class DynamicWidget extends StatelessWidget {
-  DynamicWidget({super.key});
-
-  TextEditingController controller = TextEditingController();
+class MyWidget1 extends StatelessWidget {
+  const MyWidget1({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      child: TextField(
-        controller: controller,
-        decoration: const InputDecoration(hintText: 'Enter Data'),
-      ),
+    // Provider 값 가져오기
+    final data = Provider.of<int>(context);
+    return Column(
+      children: [
+        Text('MyWidget1: $data'),
+        // 자식 위젯(MyWidget3)에서 Provider 사용 가능
+        const MyWidget3(),
+      ],
+    );
+  }
+}
+
+class MyWidget2 extends StatelessWidget {
+  const MyWidget2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    //final data = Provider.of<int>(context);
+    print('MyWidget2');
+    return const Center(
+      child: Text('MyWidget2'),
+    );
+  }
+}
+
+class MyWidget3 extends StatelessWidget {
+  const MyWidget3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Provider 값 가져오기
+    final data = Provider.of<int>(context);
+    print('MyWidget3');
+    return Center(
+      child: Text('MyWidget3: $data'),
     );
   }
 }

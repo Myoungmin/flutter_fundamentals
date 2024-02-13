@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+class PlusCounter with ChangeNotifier {
+  int _count = 0;
+  int get count => _count;
 
-class DataModel with ChangeNotifier {
-  int _data = 0;
-  int get data => _data;
-
-  void increment() {
-    _data++;
+  void increase() {
+    _count++;
     notifyListeners();
   }
+}
+
+class MinusCounter with ChangeNotifier {
+  int _count = 100;
+  int get count => _count;
+
+  void decrease() {
+    _count--;
+    notifyListeners();
+  }
+}
+
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -20,80 +30,54 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => DataModel(),
-      child: MaterialApp(
-        home: Scaffold(
+    return MaterialApp(
+      home: Scaffold(
           appBar: AppBar(
             title: const Text('Provider Test'),
           ),
-          body: const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              MyWidget1(),
-              MyWidget2(),
-              MyWidget3(),
+          body: MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (context) => PlusCounter()),
+              ChangeNotifierProvider(create: (context) => MinusCounter()),
             ],
-          ),
-        ),
-      ),
+            child: const MyWidget(),
+          )),
     );
   }
 }
 
-class MyWidget1 extends StatelessWidget {
-  const MyWidget1({super.key});
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final dataModel = Provider.of<DataModel>(context);
+    final plus = Provider.of<PlusCounter>(context);
+    final minus = Provider.of<MinusCounter>(context);
 
-    print('MyWidget1');
     return Center(
       child: Column(
-        children: <Widget>[
-          Text('MyWidget1: ${dataModel.data}'),
-          ElevatedButton(
-            onPressed: () {
-              dataModel.increment();
-            },
-            child: const Text('Increment'),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class MyWidget2 extends StatelessWidget {
-  const MyWidget2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    //final data = Provider.of<int>(context);
-    return const Center(
-      child: Text('MyWidget2 : I do not consume the model.'),
-    );
-  }
-}
-
-class MyWidget3 extends StatelessWidget {
-  const MyWidget3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final dataModel = Provider.of<DataModel>(context);
-
-    print('MyWidget3');
-    return Center(
-      child: Column(
-        children: <Widget>[
-          Text('MyWidget3: ${dataModel.data}'),
-          ElevatedButton(
-            onPressed: () {
-              dataModel.increment();
-            },
-            child: const Text('Increment'),
+        children: [
+          const SizedBox(height: 20),
+          Text('Plus: ${plus.count}'),
+          const SizedBox(height: 20),
+          Text('Minus: ${minus.count}'),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  plus.increase();
+                },
+                child: const Text('+'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  minus.decrease();
+                },
+                child: const Text('-'),
+              ),
+            ],
           )
         ],
       ),

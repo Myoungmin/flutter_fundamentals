@@ -11,13 +11,13 @@ class PlusCounter with ChangeNotifier {
   }
 }
 
-class MinusCounter with ChangeNotifier {
-  int _count = 100;
-  int get count => _count;
-
-  void decrease() {
-    _count--;
-    notifyListeners();
+class SumCounter {
+  int _total = 0;
+  int get total => _total;
+  SumCounter(PlusCounter plusCounter) {
+    for (int i = 1; i <= plusCounter.count; i++) {
+      _total += i;
+    }
   }
 }
 
@@ -32,16 +32,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Provider Test'),
-          ),
-          body: MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (context) => PlusCounter()),
-              ChangeNotifierProvider(create: (context) => MinusCounter()),
-            ],
-            child: const MyWidget(),
-          )),
+        appBar: AppBar(
+          title: const Text('Provider Test'),
+        ),
+        body: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => PlusCounter()),
+            ProxyProvider<PlusCounter, SumCounter>(
+              update: (context, plusCounter, sumCounter) {
+                return SumCounter(plusCounter);
+              },
+            )
+          ],
+          child: const MyWidget(),
+        ),
+      ),
     );
   }
 }
@@ -52,7 +57,7 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final plus = Provider.of<PlusCounter>(context);
-    final minus = Provider.of<MinusCounter>(context);
+    final minus = Provider.of<SumCounter>(context);
 
     return Center(
       child: Column(
@@ -60,7 +65,7 @@ class MyWidget extends StatelessWidget {
           const SizedBox(height: 20),
           Text('Plus: ${plus.count}'),
           const SizedBox(height: 20),
-          Text('Minus: ${minus.count}'),
+          Text('Minus: ${minus.total}'),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -70,12 +75,6 @@ class MyWidget extends StatelessWidget {
                   plus.increase();
                 },
                 child: const Text('+'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  minus.decrease();
-                },
-                child: const Text('-'),
               ),
             ],
           )

@@ -1,26 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PlusCounter with ChangeNotifier {
-  int _count = 0;
-  int get count => _count;
-
-  void increase() {
-    _count++;
-    notifyListeners();
-  }
-}
-
-class SumCounter {
-  int _total = 0;
-  int get total => _total;
-  SumCounter(PlusCounter plusCounter) {
-    for (int i = 1; i <= plusCounter.count; i++) {
-      _total += i;
-    }
-  }
-}
-
 void main() {
   runApp(const MyApp());
 }
@@ -37,12 +17,11 @@ class MyApp extends StatelessWidget {
         ),
         body: MultiProvider(
           providers: [
-            ChangeNotifierProvider(create: (context) => PlusCounter()),
-            ProxyProvider<PlusCounter, SumCounter>(
-              update: (context, plusCounter, sumCounter) {
-                return SumCounter(plusCounter);
-              },
-            )
+            FutureProvider(
+              create: (context) =>
+                  Future.delayed(const Duration(seconds: 5), () => 5),
+              initialData: 1,
+            ),
           ],
           child: const MyWidget(),
         ),
@@ -56,28 +35,13 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final plus = Provider.of<PlusCounter>(context);
-    final minus = Provider.of<SumCounter>(context);
+    final seconds = Provider.of<int>(context);
 
     return Center(
       child: Column(
         children: [
           const SizedBox(height: 20),
-          Text('Plus: ${plus.count}'),
-          const SizedBox(height: 20),
-          Text('Minus: ${minus.total}'),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  plus.increase();
-                },
-                child: const Text('+'),
-              ),
-            ],
-          )
+          Text('Seconds: $seconds'),
         ],
       ),
     );
